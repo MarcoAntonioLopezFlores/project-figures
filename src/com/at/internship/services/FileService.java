@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class FileService{
 
@@ -61,4 +62,10 @@ public class FileService{
         }
     }
 
+    public void readFiles(){
+        DirectoryService directoryService = new DirectoryService();
+        File directory = directoryService.chooseDirectory(directoryService.readSubdirectories());
+
+        System.out.println(Arrays.toString(directory.listFiles()));
+    }
 }

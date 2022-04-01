@@ -28,8 +28,8 @@ public class AppService{
                         figureService.calculateMeasures();
                         break;
                     case OPEN_FILES:
-                        DirectoryService directoryService = new DirectoryService();
-                       directoryService.readSubdirectories();
+                        FileService service = new FileService();
+                        service.readFiles();
                         break;
                     case EXIT:
                         break;

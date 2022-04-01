@@ -2,6 +2,7 @@ package com.at.internship.services;
 
 import com.at.internship.constants.Constants;
 import com.at.internship.constants.Messages;
+import com.at.internship.utils.BuilderMenu;
 import com.at.internship.utils.InputPane;
 
 import javax.swing.*;
@@ -33,18 +34,16 @@ public class DirectoryService {
         return directories;
     }
 
-    private File chooseDirectory(Map<Integer, File> directories, String menu){
-        JFrame frame = new JFrame();
-        frame.requestFocusInWindow();
+    public File chooseDirectory(Map<Integer, File> directories){
+        BuilderMenu builderMenu = new BuilderMenu();
         InputPane input = new InputPane();
+        String menu = builderMenu.makeMenuDirectories(Messages.TITULO_SELECCIONAR_OPCION, directories);
         File directory;
-        do{
-            int option = input.readJPaneInteger(null,menu);
+        do {
+            int option = input.readJPaneInteger(null, menu);
             directory = directories.get(option);
-            if(!(directory.exists() && directory.isDirectory())){
-                JOptionPane.showMessageDialog(frame, String.format(Messages.CARPETA_NO_EXISTENTE, directory.getName()));
-            }
-        }while(!(directory.exists() && directory.isDirectory()));
+            if (directory == null) JOptionPane.showMessageDialog(null, Messages.OPCION_INVALIDA);
+        } while(directory==null);
         return directory;
     }
 }
