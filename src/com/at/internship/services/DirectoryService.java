@@ -33,16 +33,16 @@ public class DirectoryService {
         return directories;
     }
 
-    private File chooseDirectory(Map<Integer, String> directories, String menu){
+    private File chooseDirectory(Map<Integer, File> directories, String menu){
         JFrame frame = new JFrame();
         frame.requestFocusInWindow();
         InputPane input = new InputPane();
         File directory;
         do{
             int option = input.readJPaneInteger(null,menu);
-            directory = new File(String.format("./%s",nameDirectory));
+            directory = directories.get(option);
             if(!(directory.exists() && directory.isDirectory())){
-                JOptionPane.showMessageDialog(frame, String.format(Messages.CARPETA_NO_EXISTENTE, nameDirectory));
+                JOptionPane.showMessageDialog(frame, String.format(Messages.CARPETA_NO_EXISTENTE, directory.getName()));
             }
         }while(!(directory.exists() && directory.isDirectory()));
         return directory;
