@@ -17,6 +17,8 @@ public class DirectoryService {
         File directory;
         boolean directoryCreated=true;
         do{
+            File mainDirectory = new File(Constants.PATH);
+            if (!mainDirectory.exists()) mainDirectory.mkdir();
             directory = new File(String.format(Constants.PATH_FILE_CREATE,nameDirectory));
             if (!directory.exists()) directoryCreated = directory.mkdir();
         }while(!directoryCreated);
