@@ -22,7 +22,7 @@ public class InputPane {
                 System.err.println(e.getMessage());
             }
         }while(value == null);
-        return value.trim().replace(" ","_");
+        return value.trim().replace(" ","");
     }
 
     public double readJPaneDouble(JFrame frame,String promp){

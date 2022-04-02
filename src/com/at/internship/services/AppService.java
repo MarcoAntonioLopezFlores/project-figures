@@ -29,9 +29,11 @@ public class AppService{
                         break;
                     case OPEN_FILES:
                         FileService service = new FileService();
-                        service.openFiles();
+                        service.chooseFiles();
                         break;
                     case EXIT:
+                        JOptionPane.showMessageDialog(null, Messages.FINALIZADO);
+                        System.exit(0);
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, Messages.OPCION_INVALIDA);

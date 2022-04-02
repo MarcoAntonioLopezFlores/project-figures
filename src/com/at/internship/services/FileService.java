@@ -2,15 +2,16 @@ package com.at.internship.services;
 
 import com.at.internship.constants.Constants;
 import com.at.internship.constants.Messages;
+import com.at.internship.threads.FileReadThread;
 import com.at.internship.utils.BuilderMenu;
 import com.at.internship.utils.InputPane;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -66,17 +67,17 @@ public class FileService{
         }
     }
 
-    public void openFiles(){
+    public void chooseFiles(){
         DirectoryService directoryService = new DirectoryService();
         BuilderMenu builderMenu = new BuilderMenu();
         InputPane inputPane = new InputPane();
         Map<Integer, File> directories = directoryService.readSubdirectories(Constants.PATH);
         if(!directories.isEmpty()){
             File directory = directoryService.chooseDirectory(directories);
-
             String menu = builderMenu.makeMenuDirectories(String.format(Messages.SELECCIONAR_ARCHIVOS, Constants.NAME_SEPARATOR, Constants.SEPARATOR_FILES),readFiles(directory.getPath()));
             String filesToOpen = inputPane.readJPaneString(null,menu);
-            System.out.println(Arrays.toString(filesToOpen.split(Constants.SEPARATOR_FILES)));
+            Thread thread = new Thread(new FileReadThread(directory,filesToOpen.split(Constants.SEPARATOR_FILES)));
+            thread.start();
         }else{
             JOptionPane.showMessageDialog(null, Messages.DIRECTORIO_VACIO);
         }
@@ -92,5 +93,25 @@ public class FileService{
             id++;
         }
         return files;
+    }
+
+    public void openFiles(File directory,String[] nameFiles){
+        for (String nameFile : nameFiles) {
+            File file = new File(String.format(Constants.FILE_INPUT, directory.getPath()+"/"+nameFile));
+            if(file.exists()){
+                if(!Desktop.isDesktopSupported()){
+                    System.err.println("Desktop is not supported");
+                    return;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.open(file);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else System.err.println(nameFile+" does not exist.");
+        }
     }
 }
