@@ -1,6 +1,4 @@
 package com.at.internship.threads;
-
-import com.at.internship.services.DirectoryService;
 import com.at.internship.services.FileService;
 
 import java.io.File;

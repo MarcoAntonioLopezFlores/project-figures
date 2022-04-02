@@ -1,7 +1,8 @@
 package com.at.internship.domain;
-
 import com.at.internship.constants.Messages;
 import com.at.internship.interfaces.IFigure;
+
+import static com.at.internship.constants.Constants.NUMBER_FORMAT;
 
 public class Square implements IFigure {
 
@@ -22,6 +23,6 @@ public class Square implements IFigure {
 
     @Override
     public String readAttributes() {
-        return String.format(Messages.MENSAJE_PROPIEDADES_CUADRADO, side);
+        return String.format(Messages.MENSAJE_PROPIEDADES_CUADRADO,  NUMBER_FORMAT.format(side));
     }
 }

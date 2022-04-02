@@ -3,6 +3,8 @@ package com.at.internship.domain;
 import com.at.internship.constants.Messages;
 import com.at.internship.interfaces.IFigure;
 
+import static com.at.internship.constants.Constants.NUMBER_FORMAT;
+
 public class Circle implements IFigure {
     private double radio;
 
@@ -22,6 +24,6 @@ public class Circle implements IFigure {
 
     @Override
     public String readAttributes() {
-        return String.format(Messages.MENSAJE_PROPIEDADES_CIRCULO, radio);
+        return String.format(Messages.MENSAJE_PROPIEDADES_CIRCULO, NUMBER_FORMAT.format(radio));
     }
 }

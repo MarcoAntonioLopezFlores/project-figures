@@ -3,6 +3,8 @@ package com.at.internship.domain;
 import com.at.internship.abstracts.Triangle;
 import com.at.internship.constants.Messages;
 
+import static com.at.internship.constants.Constants.NUMBER_FORMAT;
+
 public class EquilateralTriangle extends Triangle {
     private double side;
 
@@ -29,6 +31,6 @@ public class EquilateralTriangle extends Triangle {
 
     @Override
     public String readAttributes() {
-        return String.format(Messages.MENSAJE_PROPIEDADES_TRIANGULO_EQUILATERO, height,side);
+        return String.format(Messages.MENSAJE_PROPIEDADES_TRIANGULO_EQUILATERO, NUMBER_FORMAT.format(height), NUMBER_FORMAT.format(side));
     }
 }

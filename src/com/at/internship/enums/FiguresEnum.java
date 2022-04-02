@@ -4,7 +4,7 @@ public enum FiguresEnum {
     CIRCLE("Circulo",1),
     SQUARE("Cuadrado", 2),
     RECTANGLE("Rectangulo", 3),
-    EQUILATER_TRIANGLE("Triangulo equilatero", 4),
+    EQUILATERAL_TRIANGLE("Triangulo equilatero", 4),
     ISOSCELES_TRIANGLE("Triangulo isosceles", 5);
 
     private final String name;

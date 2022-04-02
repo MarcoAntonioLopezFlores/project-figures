@@ -1,7 +1,8 @@
 package com.at.internship.domain;
-
 import com.at.internship.constants.Messages;
 import com.at.internship.interfaces.IFigure;
+
+import static com.at.internship.constants.Constants.NUMBER_FORMAT;
 
 public class Rectangle implements IFigure {
 
@@ -25,6 +26,6 @@ public class Rectangle implements IFigure {
 
     @Override
     public String readAttributes() {
-        return String.format(Messages.MENSAJE_PROPIEDADES_RECTANGULO, height, base);
+        return String.format(Messages.MENSAJE_PROPIEDADES_RECTANGULO,  NUMBER_FORMAT.format(height),  NUMBER_FORMAT.format(base));
     }
 }

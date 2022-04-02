@@ -3,6 +3,8 @@ package com.at.internship.domain;
 import com.at.internship.abstracts.Triangle;
 import com.at.internship.constants.Messages;
 
+import static com.at.internship.constants.Constants.NUMBER_FORMAT;
+
 public class IsoscelesTriangle extends Triangle {
     private double side;
     private double base;
@@ -30,6 +32,9 @@ public class IsoscelesTriangle extends Triangle {
 
     @Override
     public String readAttributes() {
-        return String.format(Messages.MENSAJE_PROPIEDADES_TRIANGULO_ISOSCELES, height,side,base);
+        return String.format(Messages.MENSAJE_PROPIEDADES_TRIANGULO_ISOSCELES,
+                NUMBER_FORMAT.format(height),
+                NUMBER_FORMAT.format(side),
+                NUMBER_FORMAT.format(base));
     }
 }

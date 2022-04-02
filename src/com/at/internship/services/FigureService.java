@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
+import static com.at.internship.constants.Constants.NUMBER_FORMAT;
+
 public class FigureService {
 
     public void calculateMeasures(){
@@ -39,14 +41,18 @@ public class FigureService {
                     double baseI= input.readJPaneDouble(null,String.format(Messages.INGRESO_BASE, Constants.UNITY_MEASURE));
                     measures = new IsoscelesTriangle(sideI, baseI);
                     break;
-                case EQUILATER_TRIANGLE:
+                case EQUILATERAL_TRIANGLE:
                     double sideE = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Constants.UNITY_MEASURE));
                     measures = new EquilateralTriangle(sideE);
                     break;
             }
 
             if( measures != null){
-                String message = String.format(Messages.MENSAJE_FINAL, figure.getName(),measures.readAttributes(), measures.calculatePerimeter(), measures.calculateArea());
+                String message = String.format(Messages.MENSAJE_FINAL,
+                        figure.getName(),
+                        measures.readAttributes(),
+                        NUMBER_FORMAT.format(measures.calculatePerimeter()),
+                        NUMBER_FORMAT.format(measures.calculateArea()));
                 JOptionPane.showMessageDialog(null,message);
                 JOptionPane.showMessageDialog(null,Messages.AVISO_REGISTRO_RESULTADOS);
                 Thread thread = new Thread(new FileWriteThread(message));
