@@ -1,6 +1,6 @@
 package com.at.internship.utils;
 
-import com.at.internship.constants.Messages;
+import com.at.internship.constants.Constants;
 import com.at.internship.enums.FiguresEnum;
 import com.at.internship.enums.OperationsEnum;
 
@@ -13,7 +13,7 @@ public class BuilderMenu {
         StringBuilder textMenu = new StringBuilder(title);
         OperationsEnum[] processes = OperationsEnum.values();
         for(OperationsEnum p : processes) {
-            textMenu.append(String.format(Messages.FORMATO_OPCIONES, p.getOption(), p.getName()));
+            textMenu.append(String.format(Constants.FORMAT_OPTIONS, p.getOption(), p.getName()));
         }
         return textMenu.toString();
     }
@@ -22,14 +22,14 @@ public class BuilderMenu {
         StringBuilder textMenu = new StringBuilder(title);
         FiguresEnum[] figures = FiguresEnum.values();
         for(FiguresEnum f : figures) {
-            textMenu.append(String.format(Messages.FORMATO_OPCIONES, f.getOption(), f.getName()));
+            textMenu.append(String.format(Constants.FORMAT_OPTIONS, f.getOption(), f.getName()));
         }
         return textMenu.toString();
     }
 
     public String makeMenuDirectories(String title, Map<Integer, File> directories){
         StringBuilder textMenu = new StringBuilder(title);
-        directories.forEach((option, file) -> textMenu.append(String.format(Messages.FORMATO_OPCIONES, option, file.getName())) );
+        directories.forEach((option, file) -> textMenu.append(String.format(Constants.FORMAT_OPTIONS, option, file.getName())) );
         return textMenu.toString();
     }
 }

@@ -23,9 +23,10 @@ public class DirectoryService {
         return directory;
     }
 
-    public Map<Integer, File> readSubdirectories(){
-        File directory = new File(Constants.PATH);
+    public Map<Integer, File> readSubdirectories(String path){
+
         int id=1;
+        File directory = new File(path);
         Map<Integer, File> directories = new HashMap<>();
         for (File file : Objects.requireNonNull(directory.listFiles(File::isDirectory))) {
             directories.put(id,file);

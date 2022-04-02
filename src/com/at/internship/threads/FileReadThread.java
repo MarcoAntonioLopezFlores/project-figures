@@ -7,6 +7,6 @@ public class FileReadThread implements Runnable{
     @Override
     public void run() {
         FileService service = new FileService();
-        service.readFiles();
+        service.openFiles();
     }
 }

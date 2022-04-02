@@ -29,7 +29,7 @@ public class AppService{
                         break;
                     case OPEN_FILES:
                         FileService service = new FileService();
-                        service.readFiles();
+                        service.openFiles();
                         break;
                     case EXIT:
                         break;
