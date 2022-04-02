@@ -2,6 +2,7 @@ package com.at.internship.services;
 
 import com.at.internship.constants.Messages;
 import com.at.internship.enums.OperationsEnum;
+import com.at.internship.exceptions.ProcessAbortedException;
 import com.at.internship.utils.BuilderMenu;
 import com.at.internship.utils.InputPane;
 
@@ -38,7 +39,10 @@ public class AppService{
                     default:
                         JOptionPane.showMessageDialog(null, Messages.OPCION_INVALIDA);
                 }
-            }catch (NoSuchElementException | NumberFormatException e){
+            }catch (ProcessAbortedException e){
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                System.err.printf(Messages.MENSAJE_ERROR_PROCESO, e.getProcess());
+            } catch (NoSuchElementException | NumberFormatException e){
                 JOptionPane.showMessageDialog(null, Messages.OPCION_INVALIDA);
             }
         }while(!Objects.equals(process, OperationsEnum.EXIT));

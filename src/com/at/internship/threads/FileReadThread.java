@@ -5,8 +5,8 @@ import java.io.File;
 
 public class FileReadThread implements Runnable{
 
-    private File directory;
-    private String[] nameFiles;
+    private final File directory;
+    private final String[] nameFiles;
 
     public FileReadThread(File directory, String[] nameFiles){
         this.directory=directory;

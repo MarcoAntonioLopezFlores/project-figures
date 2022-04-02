@@ -28,5 +28,6 @@ public class Messages {
     public static final String AVISO_REGISTRO_RESULTADOS = "SE REGISTRARAN LAS MEDIDAS EN UN ARCHIVO";
     public static final String SELECCIONAR_ARCHIVOS = "Escribe el nombre los archivos que deseas abrir separados por %s (%s).";
     public static final String DIRECTORIO_VACIO = "UPS, PARECE QUE NO HAY CARPETAS AUN";
+    public static final String MENSAJE_ERROR_PROCESO = "ERROR EN EL PROCESO: %s.";
 
 }

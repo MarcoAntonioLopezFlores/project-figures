@@ -4,6 +4,8 @@ import com.at.internship.constants.Constants;
 import com.at.internship.constants.Messages;
 import com.at.internship.domain.*;
 import com.at.internship.enums.FiguresEnum;
+import com.at.internship.enums.OperationsEnum;
+import com.at.internship.exceptions.ProcessAbortedException;
 import com.at.internship.interfaces.IFigure;
 import com.at.internship.threads.FileWriteThread;
 import com.at.internship.utils.BuilderMenu;
@@ -17,7 +19,7 @@ import static com.at.internship.constants.Constants.NUMBER_FORMAT;
 
 public class FigureService {
 
-    public void calculateMeasures(){
+    public void calculateMeasures() throws ProcessAbortedException {
         try{
             InputPane input = new InputPane();
             IFigure measures = null;
@@ -60,16 +62,21 @@ public class FigureService {
 
             }
         }catch (NoSuchElementException | NumberFormatException e){
-            JOptionPane.showMessageDialog(null, Messages.OPCION_INVALIDA);
+            throw new ProcessAbortedException(Messages.OPCION_INVALIDA,OperationsEnum.REGISTER_CALCULATE);
         }
 
     }
 
-    private FiguresEnum chooseFigure(){
-        InputPane input = new InputPane();
-        BuilderMenu builderMenu = new BuilderMenu();
-        String menu = builderMenu.makeMenuFigures(Messages.INGRESO_OPCION_FIGURA);
-        int option = input.readJPaneInteger(null,menu);
-        return Stream.of(FiguresEnum.values()).filter(f -> f.getOption() == option).findFirst().orElseThrow(NoSuchElementException::new);
+    private FiguresEnum chooseFigure() throws ProcessAbortedException {
+        try{
+            InputPane input = new InputPane();
+            BuilderMenu builderMenu = new BuilderMenu();
+            String menu = builderMenu.makeMenuFigures(Messages.INGRESO_OPCION_FIGURA);
+            int option = input.readJPaneInteger(null,menu);
+            return Stream.of(FiguresEnum.values()).filter(f -> f.getOption() == option).findFirst().orElseThrow(NoSuchElementException::new);
+        }catch (NoSuchElementException | NumberFormatException e ) {
+            throw new ProcessAbortedException(Messages.OPCION_INVALIDA,OperationsEnum.REGISTER_CALCULATE);
+        }
+
     }
 }
