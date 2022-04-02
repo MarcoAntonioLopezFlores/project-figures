@@ -1,5 +1,6 @@
 package com.at.internship.services;
 
+import com.at.internship.constants.Constants;
 import com.at.internship.constants.Messages;
 import com.at.internship.domain.*;
 import com.at.internship.enums.FiguresEnum;
@@ -21,25 +22,25 @@ public class FigureService {
             FiguresEnum figure = chooseFigure();
             switch(figure){
                 case CIRCLE:
-                    double radio = input.readJPaneDouble(null,String.format(Messages.INGRESO_RADIO, Messages.UNIDAD_MEDIDA));
+                    double radio = input.readJPaneDouble(null,String.format(Messages.INGRESO_RADIO, Constants.UNITY_MEASURE));
                     measures = new Circle(radio);
                     break;
                 case SQUARE:
-                    double side = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Messages.UNIDAD_MEDIDA));
+                    double side = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Constants.UNITY_MEASURE));
                     measures = new Square(side);
                     break;
                 case RECTANGLE:
-                    double base = input.readJPaneDouble(null,String.format(Messages.INGRESO_BASE, Messages.UNIDAD_MEDIDA));
-                    double height = input.readJPaneDouble(null,String.format(Messages.INGRESO_ALTURA, Messages.UNIDAD_MEDIDA));
+                    double base = input.readJPaneDouble(null,String.format(Messages.INGRESO_BASE, Constants.UNITY_MEASURE));
+                    double height = input.readJPaneDouble(null,String.format(Messages.INGRESO_ALTURA, Constants.UNITY_MEASURE));
                     measures = new Rectangle(base, height);
                     break;
                 case ISOSCELES_TRIANGLE:
-                    double sideI = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Messages.UNIDAD_MEDIDA));
-                    double baseI= input.readJPaneDouble(null,String.format(Messages.INGRESO_BASE, Messages.UNIDAD_MEDIDA));
+                    double sideI = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Constants.UNITY_MEASURE));
+                    double baseI= input.readJPaneDouble(null,String.format(Messages.INGRESO_BASE, Constants.UNITY_MEASURE));
                     measures = new IsoscelesTriangle(sideI, baseI);
                     break;
                 case EQUILATER_TRIANGLE:
-                    double sideE = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Messages.UNIDAD_MEDIDA));
+                    double sideE = input.readJPaneDouble(null,String.format(Messages.INGRESO_LADO, Constants.UNITY_MEASURE));
                     measures = new EquilateralTriangle(sideE);
                     break;
             }

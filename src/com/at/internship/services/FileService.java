@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -69,11 +70,17 @@ public class FileService{
         DirectoryService directoryService = new DirectoryService();
         BuilderMenu builderMenu = new BuilderMenu();
         InputPane inputPane = new InputPane();
-        File directory = directoryService.chooseDirectory(directoryService.readSubdirectories(Constants.PATH));
+        Map<Integer, File> directories = directoryService.readSubdirectories(Constants.PATH);
+        if(!directories.isEmpty()){
+            File directory = directoryService.chooseDirectory(directories);
 
-        String menu = builderMenu.makeMenuDirectories(String.format(Messages.SELECCIONAR_ARCHIVOS, Constants.NAME_SEPARATOR, Constants.SEPARATOR_FILES),readFiles(directory.getPath()));
-        String filesToOpen = inputPane.readJPaneString(null,menu);
-        System.out.println(filesToOpen.split(","));
+            String menu = builderMenu.makeMenuDirectories(String.format(Messages.SELECCIONAR_ARCHIVOS, Constants.NAME_SEPARATOR, Constants.SEPARATOR_FILES),readFiles(directory.getPath()));
+            String filesToOpen = inputPane.readJPaneString(null,menu);
+            System.out.println(Arrays.toString(filesToOpen.split(Constants.SEPARATOR_FILES)));
+        }else{
+            JOptionPane.showMessageDialog(null, Messages.DIRECTORIO_VACIO);
+        }
+
     }
 
     public Map<Integer, File> readFiles(String path){

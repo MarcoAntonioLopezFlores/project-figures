@@ -27,5 +27,6 @@ public class Messages {
     public static final String ARCHIVO_NO_CREADO = "Archivo %s no fue creado, intenta nuevamente.%n";
     public static final String AVISO_REGISTRO_RESULTADOS = "SE REGISTRARAN LAS MEDIDAS EN UN ARCHIVO";
     public static final String SELECCIONAR_ARCHIVOS = "Escribe los archivos que deseas abrir separados por %s (%s).";
+    public static final String DIRECTORIO_VACIO = "UPS, PARECE QUE NO HAY CARPETAS AUN";
 
 }
