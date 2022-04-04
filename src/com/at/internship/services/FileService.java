@@ -20,8 +20,8 @@ public class FileService{
 
     public String createFile(){
         JFrame frame = new JFrame();
-        frame.setAlwaysOnTop(true);
         frame.setFocusable(true);
+        frame.setAlwaysOnTop(true);
         frame.setAutoRequestFocus(true);
         frame.requestFocusInWindow();
         DirectoryService directoryService = new DirectoryService();
@@ -76,8 +76,11 @@ public class FileService{
             File directory = directoryService.chooseDirectory(directories);
             String menu = builderMenu.makeMenuDirectories(String.format(Messages.SELECCIONAR_ARCHIVOS, Constants.NAME_SEPARATOR, Constants.SEPARATOR_FILES),readFiles(directory.getPath()));
             String filesToOpen = inputPane.readJPaneString(null,menu);
-            Thread thread = new Thread(new FileReadThread(directory,filesToOpen.split(Constants.SEPARATOR_FILES)));
-            thread.start();
+            String [] nameFiles = filesToOpen.split(Constants.SEPARATOR_FILES);
+            for (String nameFile : nameFiles) {
+                Thread thread = new Thread(new FileReadThread(directory,nameFile));
+                thread.start();
+            }
         }else{
             JOptionPane.showMessageDialog(null, Messages.DIRECTORIO_VACIO);
         }
@@ -95,23 +98,20 @@ public class FileService{
         return files;
     }
 
-    public void openFiles(File directory,String[] nameFiles){
-        for (String nameFile : nameFiles) {
-            File file = new File(String.format(Constants.FILE_INPUT, directory.getPath()+"/"+nameFile));
-            if(file.exists()){
-                if(!Desktop.isDesktopSupported()){
-                    System.err.println("Desktop is not supported");
-                    return;
-                }
-                Desktop desktop = Desktop.getDesktop();
-                try {
-                    desktop.open(file);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+    public void openFiles(File directory,String nameFile){
+        File file = new File(String.format(Constants.FILE_INPUT, directory.getPath()+"/"+nameFile));
+        if(file.exists()){
+            if(!Desktop.isDesktopSupported()){
+                System.err.println("Desktop is not supported");
+                return;
             }
-            else System.err.println(nameFile+" does not exist.");
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.open(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        else System.err.println(nameFile+" does not exist.");
     }
 }

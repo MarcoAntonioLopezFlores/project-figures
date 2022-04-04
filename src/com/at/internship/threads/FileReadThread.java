@@ -6,16 +6,16 @@ import java.io.File;
 public class FileReadThread implements Runnable{
 
     private final File directory;
-    private final String[] nameFiles;
+    private final String nameFile;
 
-    public FileReadThread(File directory, String[] nameFiles){
+    public FileReadThread(File directory, String nameFile){
         this.directory=directory;
-        this.nameFiles=nameFiles;
+        this.nameFile=nameFile;
     }
 
     @Override
     public void run() {
         FileService service = new FileService();
-        service.openFiles(directory,nameFiles);
+        service.openFiles(directory,nameFile);
     }
 }
